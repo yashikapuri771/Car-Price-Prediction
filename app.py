@@ -11,7 +11,7 @@ st.set_page_config(
 # ================= THEME TOGGLE =================
 dark_mode = st.toggle("🌙 Dark Mode")
 
-# ================= THEME CSS =================
+# ================= THEME CSS ===================
 if dark_mode:
     st.markdown(
         """
@@ -171,5 +171,7 @@ if st.button("Predict Price"):
     })
 
     price = model.predict(input_df)[0]
+    price = max(5000, price)  # prevent negative values
+
     st.success(f"💰 Estimated Car Price: ₹ {int(price):,}")
     st.caption("Price is an estimate based on historical data.")
